@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Tareas pendientes</title>
+    <link
+    href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+    rel="stylesheet"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+  integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+  crossorigin="anonymous"
+/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+
+<style>
+    /* GENERALS */
+    body {
+        background-color: #000000;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 800'%3E%3Cg %3E%3Ccircle fill='%23000000' cx='400' cy='400' r='600'/%3E%3Ccircle fill='%23180d1c' cx='400' cy='400' r='500'/%3E%3Ccircle fill='%23261431' cx='400' cy='400' r='400'/%3E%3Ccircle fill='%23351947' cx='400' cy='400' r='300'/%3E%3Ccircle fill='%23451e5e' cx='400' cy='400' r='200'/%3E%3Ccircle fill='%23552277' cx='400' cy='400' r='100'/%3E%3C/g%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-size: cover;
+        color: #FEFEFE;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    button { 
+        background-color: transparent;
+        border: transparent;
+        color: #3F3F5F;
+        vertical-align: middle;
+        outline: none;
+        transition: 0.3s;
+        padding: 0 10px;
+    }
+    button:hover {
+        transform: scale(1.2);
+    }
+    .App {
+        text-align: center;
+        text-decoration: none;
+    }
+
+    /* FORM */
+    .form-input {
+        display: flex;
+        justify-content: center;
+    }
+    .form-input-group {
+        color: #3F3F5F;
+        background-color: #FEFEFE;
+        min-width: 80vw;
+        line-height: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .todo-input {
+        border: none;
+        outline: none;
+        padding: 0 10px;
+        width: 85%;
+        font-size: 18px;
+    }
+    .todo-button {
+        width: 15%;
+    }
+
+    /* FILTER */
+    .select {
+        display: flex;
+        justify-content: center;
+    }
+
+    .filter-todo {
+        padding: 0 10px;
+        margin: 10px 0;
+        width: 80vw;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    /* TO DO LIST */
+    .todo-container {
+        display: flex;
+        justify-content: center;
+    }
+    .todo {
+        display: flex;
+        background-color: #FEFEFE;
+        justify-content: center;
+        margin: 0 0 10px 0;
+    }
+    .todo-list {
+        display: inline;
+        padding: 0;
+        margin: 40px 0;
+        color: #3F3F5F;
+        width: 80vw;
+    }
+    .todo li {
+        margin-left: 15px;
+        margin-right: 15px;
+        line-height: 40px;
+        min-height: 40px;
+        list-style: none;
+        font-weight: 600;
+    }
+
+</style>
+<body>
+    <div class="App">
+        <header>
+          <h1 class="header">Lista de tareas</h1>
+        </header>
+        <form>
+            <div class="form-input">
+                <div class="form-input-group">
+                    <input value={inputText} onChange={inputTextHandler} type="text" class="todo-input" />
+                    <button onClick={submitTodoHandler} class="todo-button" type="submit">
+                        <span class="material-icons">
+                            add_circle_outline
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="select">
+                <select onChange={statusHandler} name="todos" class="filter-todo">
+                    <option value="all">Todas</option>
+                    <option value="completed">Completadas</option>
+                    <option value="uncompleted">Pendientes</option>
+                </select>
+            </div>
+        </form>
+        <div class="todo-container">
+            <ul class="todo-list">
+                <div class="todo">
+                    <button onClick={completeHandler} class="complete-btn">
+                        <span class="material-icons">
+                            task_alt
+                        </span>
+                    </button>
+                    <li class={`todo-item ${todo.completed ? 'completed' : ''}`}>
+                        Comprar pan, Arroz y queso
+                    </li>
+                    <button onClick={deleteHandler} class="trash-btn">
+                        <span class="material-icons">
+                            delete_outline
+                        </span>
+                    </button>
+                </div>
+            </ul>
+        </div>
+      </div>
+</body>
+</html>
+<!-- {`todo-item ${todo.completed ? 'completed' : ''}`} <<--- ul li items -->
